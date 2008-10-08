@@ -1,6 +1,6 @@
 ---
 name: Bio-GMOD-GenericGenePage
-version: 0.1
+version: 0.11
 author:
   - Scott Cain and Robert Buels
 abstract: 'An abstract implementation of a Generic Gene Page XML, with 2 exmples'
@@ -10,7 +10,7 @@ resources:
 provides:
   Bio::GMOD::GenericGenePage:
     file: lib/Bio/GMOD/GenericGenePage.pm
-    version: 0.1
+    version: 0.11
   Bio::GMOD::GenericGenePage::Chado:
     file: lib/Bio/GMOD/GenericGenePage/Chado.pm
   CXGN::Phenome::GenericGenePage:

@@ -4,7 +4,7 @@ use warnings;
 use English;
 use Carp;
 
-our $VERSION = 0.1;
+our $VERSION = 0.11;
 
 
 =head1 NAME
@@ -18,6 +18,28 @@ Bio::GMOD::GenericGenePage - Generic GMOD gene page base class
 
 =head1 DESCRIPTION
 
+Bio::GMOD::GenericGenePage is an abstract class to make it easier for 
+Model Organism Databases (MODs) to serve up a simple XML that describes
+attributes of their gene models.  In order to implement this, the user
+needs to subclass Bio::GMOD::GenericGenePage and provide the methods
+listed below as abstract classes.  These methods are then used by
+the render_xml method to create XML for a given gene.
+
+There is one example implementation included with this distribution,
+Bio::GMOD::GenericGenePage::Chado, which is a Chado adapter for a 
+yeast database derived from SGD's GFF3.  In order to implement this for
+another Chado database it should be fairly easy to modify the provided
+methods to create your own adaptor.  For example, ParameciumDB could
+subclass Bio::GMOD::GenericGenePage::Chado and create
+Bio::GMOD::GenericGenePage::Chado::ParameciumDB and only override
+the data_provider and organism methods to have a working adaptor.
+Databases not based on Chado will only have slightly more work, in order
+to implement all of the abstract classes in Bio::GMOD::GenericGenePage.
+
+Another example implementation is included, CXGN::Phenome::GenericGenePage,
+however this is only a partial implementation and will not work with 
+the current release of Bio::GMOD::GenericGenePage.
+
 =head1 BASE CLASS(ES)
 
 none
@@ -25,16 +47,12 @@ none
 =head1 SUBCLASSES
 
 Bio::GMOD::GenericGenePage::Chado
+CXGN::Phenome::GenericGenePage
 
-=head1 USAGE
+=head1 BUGS AND SUPPORT
 
-=head1 BUGS
-
-
-
-=head1 SUPPORT
-
-
+Please report bugs and make support requests on the GMOD developers list, 
+gmod-devel@lists.sourceforge.net.
 
 =head1 AUTHOR
 
@@ -285,8 +303,8 @@ sub name {
   Ret  : a list of local accessions
   Side Effects: none
 
-Note that these are the accession the is used by the MOD providing the
-information.
+Note that these are the accessions that are used by the MOD providing the
+information, not accessions in external databases like GenBank.
 
 =cut
 
